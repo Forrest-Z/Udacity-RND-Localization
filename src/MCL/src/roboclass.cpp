@@ -251,6 +251,19 @@ int main()
 
     for (int i = 0; i < n; i++){
         p[i].set_noise(Forward_Noise, Turn_Noise, Sense_Noise);
+        // cout << p[i].show_pose() << endl;
+    }
+
+    //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
+
+    //Now, simulate motion for each particle
+    //Create a new particle set 'p2'
+    Robot p2[n];
+    //Rotate each particle by 0.1 and move it forward by 5.0
+    //Assign 'p2' to 'p' and print the particle poses, each on a single line
+    for (int i = 0; i < n; i++){
+        p2[i] = p[i].move(0.1, 5.0);
+        p[i] = p2[i];
         cout << p[i].show_pose() << endl;
     }
 
