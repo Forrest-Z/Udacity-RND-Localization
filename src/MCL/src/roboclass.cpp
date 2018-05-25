@@ -259,15 +259,16 @@ int main()
         p[i] = p2[i];
     }
 
+    //Generate particle weights depending on robot's measurement
+    double w[n];
+    for (int i = 0; i < n; i++) {
+        w[i] = p[i].measurement_prob(z);
+        //cout << w[i] << endl;
+    }
+
     //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
 
-    //Generate particle weights depending on robot's measurement
-    //Print particle weights, each on a single line
-    double w[n];
-    for (int i = 0; i < n; i++){
-        w[i] = p[i].measurement_prob(z);
-        cout << w[i] << endl;
-    }
+    //Resample the particles with a sample probability proportional to the importance weight
 
 
     return 0;
