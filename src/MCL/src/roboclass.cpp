@@ -269,7 +269,21 @@ int main()
     //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
 
     //Resample the particles with a sample probability proportional to the importance weight
+    Robot p3[n];
+    int index = gen_real_random() * n;
+    double beta = 0.0;
+    double Wmax = max(w,n);
 
-
+    for (int i = 0; i < n; i++){
+        beta += gen_real_random() * 2.0 * Wmax;
+        while (w[index] < beta){
+            beta -= w[index];
+            index =  mod((index +   1), n);
+        }
+        p3[i] = p[index];
+    }
+    for (int j = 0; j < n; j++){
+        cout << p3[j].show_pose() << endl;
+    }
     return 0;
 }
