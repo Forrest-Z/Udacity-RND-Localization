@@ -224,7 +224,6 @@ void visualization(int n, Robot robot, int step, Robot p[], Robot pr[])
 }
 */
 
-//####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
 int main()
 {
     //Practice Interfacing with Robot Class
@@ -236,35 +235,38 @@ int main()
     myrobot.move(-M_PI / 2.0, 10.0);
     //cout << myrobot.read_sensors() << endl;
 
-    //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
-
-    // Instantiating 1000 Particles each with a random position and orientation
+    // Create a set of particles
     int n = 1000;
     Robot p[n];
-    //Your job is to loop over the set of particles
-    //For each particle add noise: Forward_Noise=0.05, Turn_Noise=0.05, and Sense_Noise=5.0
-    //And print its pose on a single line
 
-    double Forward_Noise=0.05;
-    double Turn_Noise=0.05;
-    double Sense_Noise=5.0;
+    for (int i = 0; i < n; i++) {
+        p[i].set_noise(0.05, 0.05, 5.0);
+        //cout << p[i].show_pose() << endl;
+    }
 
-    for (int i = 0; i < n; i++){
-        p[i].set_noise(Forward_Noise, Turn_Noise, Sense_Noise);
-        // cout << p[i].show_pose() << endl;
+    //Re-initialize myrobot object and Initialize a measurment vector
+    myrobot = Robot();
+    vector<double> z;
+
+    //Move the robot and sense the environment afterwards
+    myrobot = myrobot.move(0.1, 5.0);
+    z = myrobot.sense();
+
+    // Simulate a robot motion for each of these particles
+    Robot p2[n];
+    for (int i = 0; i < n; i++) {
+        p2[i] = p[i].move(0.1, 5.0);
+        p[i] = p2[i];
     }
 
     //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
 
-    //Now, simulate motion for each particle
-    //Create a new particle set 'p2'
-    Robot p2[n];
-    //Rotate each particle by 0.1 and move it forward by 5.0
-    //Assign 'p2' to 'p' and print the particle poses, each on a single line
+    //Generate particle weights depending on robot's measurement
+    //Print particle weights, each on a single line
+    double w[n];
     for (int i = 0; i < n; i++){
-        p2[i] = p[i].move(0.1, 5.0);
-        p[i] = p2[i];
-        cout << p[i].show_pose() << endl;
+        w[i] = p[i].measurement_prob(z);
+        cout << w[i] << endl;
     }
 
 
