@@ -248,42 +248,55 @@ int main()
     myrobot = Robot();
     vector<double> z;
 
-    //Move the robot and sense the environment afterwards
-    myrobot = myrobot.move(0.1, 5.0);
-    z = myrobot.sense();
+    //Iterating 50 times over the set of particles
+    int steps = 50;
+        for (int t = 0; t < steps; t++) {
+        //Move the robot and sense the environment afterwards
+        myrobot = myrobot.move(0.1, 5.0);
+        z = myrobot.sense();
 
-    // Simulate a robot motion for each of these particles
-    Robot p2[n];
-    for (int i = 0; i < n; i++) {
-        p2[i] = p[i].move(0.1, 5.0);
-        p[i] = p2[i];
-    }
+        // Simulate a robot motion for each of these particles
+        Robot p2[n];
+        for (int i = 0; i < n; i++) {
+            p2[i] = p[i].move(0.1, 5.0);
+            p[i] = p2[i];
+        }
 
-    //Generate particle weights depending on robot's measurement
-    double w[n];
-    for (int i = 0; i < n; i++) {
-        w[i] = p[i].measurement_prob(z);
-        //cout << w[i] << endl;
-    }
+        //Generate particle weights depending on robot's measurement
+        double w[n];
+        for (int i = 0; i < n; i++) {
+            w[i] = p[i].measurement_prob(z);
+            //cout << w[i] << endl;
+        }
+
+        //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
+
+        //Resample the particles with a sample probability proportional to the importance weight
+        Robot p3[n];
+        int index = gen_real_random() * n;
+        double beta = 0.0;
+        double Wmax = max(w,n);
+
+        for (int i = 0; i < n; i++){
+            beta += gen_real_random() * 2.0 * Wmax;
+            while (w[index] < beta){
+                beta -= w[index];
+                index =  mod((index +   1), n);
+            }
+            p3[i] = p[index];
+        }
+        for (int j = 0; j < n; j++){
+            p[j] = p3[j];
+            // cout << p[j].show_pose() << endl;
+        }
 
     //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
 
-    //Resample the particles with a sample probability proportional to the importance weight
-    Robot p3[n];
-    int index = gen_real_random() * n;
-    double beta = 0.0;
-    double Wmax = max(w,n);
+       //Evaluate the error by priting it in this form:
+      double ErrorValue = evaluation(myrobot, p, n);
+      cout << "Step = " << t << ", Evaluation = " << ErrorValue << endl;
 
-    for (int i = 0; i < n; i++){
-        beta += gen_real_random() * 2.0 * Wmax;
-        while (w[index] < beta){
-            beta -= w[index];
-            index =  mod((index +   1), n);
-        }
-        p3[i] = p[index];
-    }
-    for (int j = 0; j < n; j++){
-        cout << p3[j].show_pose() << endl;
-    }
+
+   } //End of Steps loop
     return 0;
 }
