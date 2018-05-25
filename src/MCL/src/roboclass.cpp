@@ -1,4 +1,4 @@
-//#include "src/matplotlibcpp.h"//Graph Library
+#include "matplotlibcpp.h"//Graph Library
 #include <iostream>
 #include <string>
 #include <math.h>
@@ -6,7 +6,7 @@
 #include <stdexcept> // throw errors
 #include <random> //C++ 11 Random Numbers
 
-//namespace plt = matplotlibcpp;
+namespace plt = matplotlibcpp;
 using namespace std;
 
 // Landmarks
@@ -190,7 +190,7 @@ double max(double arr[], int n)
     }
     return max;
 }
-/*
+
 void visualization(int n, Robot robot, int step, Robot p[], Robot pr[])
 {
 	//Draw the robot, landmarks, particles and resampled particles on a graph
@@ -222,7 +222,7 @@ void visualization(int n, Robot robot, int step, Robot p[], Robot pr[])
     plt::save("./Images/Step" + to_string(step) + ".png");
     plt::clf();
 }
-*/
+
 
 int main()
 {
@@ -294,7 +294,7 @@ int main()
 
        //Evaluate the error by priting it in this form:
       double ErrorValue = evaluation(myrobot, p, n);
-      cout << "Step = " << t << ", Evaluation = " << ErrorValue << endl;
+      // cout << "Step = " << t << ", Evaluation = " << ErrorValue << endl;
 
 
    } //End of Steps loop
