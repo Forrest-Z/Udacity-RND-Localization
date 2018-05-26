@@ -269,8 +269,6 @@ int main()
             //cout << w[i] << endl;
         }
 
-        //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
-
         //Resample the particles with a sample probability proportional to the importance weight
         Robot p3[n];
         int index = gen_real_random() * n;
@@ -285,10 +283,10 @@ int main()
             }
             p3[i] = p[index];
         }
-        // for (int j = 0; j < n; j++){
-        //     p[j] = p3[j];
-        //     // cout << p[j].show_pose() << endl;
-        // }
+        for (int j = 0; j < n; j++){
+            p[j] = p3[j];
+            // cout << p[j].show_pose() << endl;
+        }
 
     //####   DON'T MODIFY ANYTHING ABOVE HERE! ENTER CODE BELOW ####
 
@@ -298,7 +296,7 @@ int main()
 
       //Graph the position of the robot and the particles at each step
 
-      visualization(n, myrobot, t, p, p3);
+      visualization(n, myrobot, t, p2, p3);
    } //End of Steps loop
     return 0;
 }
