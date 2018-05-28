@@ -1,0 +1,8 @@
+prefix=/mnt/Datos/Juanc/Documents/Udacity/worksace/catkin_ws/devel
+
+Name: turtlebot_stage
+Description: Description of turtlebot_stage
+Version: 2.2.3
+Cflags: 
+Libs: -L/mnt/Datos/Juanc/Documents/Udacity/worksace/catkin_ws/devel/lib 
+Requires: 
