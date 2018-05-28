@@ -8,10 +8,36 @@
   <!-- Localization-->
   <node pkg="amcl" type="amcl" name="amcl" output="screen">
     <remap from="scan" to="udacity_bot/laser/scan"/>
+    <!-- Overall Filtter -->
+    <param name="min_particles" value="100"/>
+    <param name="max_particles" value="3000"/>
+    <param name="update_min_a" value="3.1415926/6"/>
+    <param name="update_min_d" value="0.2"/>
+    <param name="initial_pose_x" value="0.0"/>
+    <param name="initial_pose_y" value="0.0"/>
+    <param name="initial_pose_a" value="0.0"/>
+
+    <!-- Laser model -->
+    <param name="laser_model_type" value="likelihood_field"/>
+    <param name="laser_min_range" value="-1.0"/>
+    <param name="laser_max_range" value="-1.0"/>
+    <param name="laser_max_beams" value="30"/>
+        <!-- Mixture weight for the z_hit part of the model. -->
+    <param name="laser_z_hit" value="0.95"/>
+        <!-- Mixture weight for the z_rand part of the model. -->
+    <param name="laser_z_rand" value="0.05"/>
+
+    <!-- Odometry -->
+    <param name="global_frame_id" value="map"/>
+    <param name="base_frame_id" value="robot_footprint"/>
     <param name="odom_frame_id" value="odom"/>
     <param name="odom_model_type" value="diff-corrected"/>
-    <param name="base_frame_id" value="robot_footprint"/>
-    <param name="global_frame_id" value="map"/>
+    <param name="odom_alpha1" value="0.02"/>
+    <param name="odom_alpha2" value="0.02"/>
+    <param name="odom_alpha3" value="0.02"/>
+    <param name="odom_alpha4" value="0.02"/>
+
+
   </node>
 
   <!-- Move base -->
