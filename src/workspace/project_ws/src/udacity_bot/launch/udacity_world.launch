@@ -23,5 +23,8 @@
          output="screen" args="-urdf -param robot_description -model udacity_bot"/>
 
     <!--launch rviz-->
-    <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d /mnt/Datos/Juanc/Udacity/Localization/src/workspace/project_ws/src/udacity_bot/launch/pj_localization.rviz"/>
+    <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d /mnt/Datos/Juanc/Udacity/Localization/src/workspace/project_ws/src/udacity_bot/launch/Rvizconfig.rviz"/>
+    <!-- <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d /mnt/Datos/Juanc/Udacity/Localization/src/workspace/project_ws/src/udacity_bot/launch/pj_localization.rviz"/> -->
+
+    <include file="$(find udacity_bot)/launch/amcl.launch"/>
 </launch>
