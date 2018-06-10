@@ -1,4 +1,4 @@
 */build/
 */devel/
-*project
-.fuse_hidden*
+*.project
+
