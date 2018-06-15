@@ -2,18 +2,6 @@
 
 <robot name="udacity_bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <material name="Blue">
-    <color rgba="0.0 0.0 0.8 1.0"/>
-  </material>
-  <material name="Red">
-    <color rgba="0.8 0.0 0.0 1.0"/>
-  </material>
-  <material name="Green">
-    <color rgba="0.0 0.8 0.0 1.0"/>
-  </material>
-  <material name="Black">
-    <color rgba="0.0 0 0.0 1.0"/>
-  </material>
 
   <xacro:include filename="$(find udacity_bot)/urdf/UNER_bot.gazebo" />
 
@@ -43,22 +31,22 @@
     <joint_properties damping="1.0" friction="1.0"/>
   </joint>
 
-  <joint name="tower_joint" type="fixed">
+  <joint name="neck_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="chassis"/>
-    <child link="tower" />
+    <child link="neck" />
   </joint>
 
   <joint type="fixed" name="camera_joint">
     <origin xyz="0.2 0 0.1" rpy="0 0 0"/>
     <child link="camera"/>
-    <parent link="tower"/>
+    <parent link="neck"/>
   </joint>
 
   <joint type="fixed" name="hokuyo_joint">
     <origin xyz=".15 0 .2" rpy="0 0 0"/>
     <child link="hokuyo"/>
-    <parent link="tower"/>
+    <parent link="neck"/>
   </joint>
 
   <link name="hokuyo">
@@ -114,7 +102,7 @@
     </visual>
   </link>
 
-  <link name="tower">
+  <link name="neck">
     <inertial>
       <mass value="3.0"/>
       <origin xyz="0.1 0 0.1" rpy="0 0 0"/>
@@ -125,14 +113,14 @@
       />
     </inertial>
 
-    <collision name='tower_collision'>
+    <collision name='neck_collision'>
       <origin xyz="0.1 0 0.1" rpy="0 0 0"/>
       <geometry>
         <cylinder radius=".1" length= ".1"/>
       </geometry>
     </collision>
 
-    <visual name='tower_visual'>
+    <visual name='neck_visual'>
       <origin xyz="0.1 0 0.1" rpy="0 0 0"/>
       <geometry>
         <cylinder radius=".1" length= ".1"/>
@@ -248,5 +236,17 @@
     </visual>
 
   </link>
+  <material name="Blue">
+    <color rgba="0.0 0.0 0.75 1.0"/>
+  </material>
+  <material name="Red">
+    <color rgba="0.75 0.0 0.0 1.0"/>
+  </material>
+  <material name="Green">
+    <color rgba="0.0 0.75 0.0 1.0"/>
+  </material>
+  <material name="Black">
+    <color rgba="0.0 0 0.0 1.0"/>
+  </material>
 
 </robot>
