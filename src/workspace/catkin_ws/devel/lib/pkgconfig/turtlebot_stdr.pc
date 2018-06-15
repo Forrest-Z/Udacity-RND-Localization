@@ -1,8 +1,0 @@
-prefix=/mnt/Datos/Juanc/Documents/Udacity/worksace/catkin_ws/devel
-
-Name: turtlebot_stdr
-Description: Description of turtlebot_stdr
-Version: 2.2.3
-Cflags: 
-Libs: -L/mnt/Datos/Juanc/Documents/Udacity/worksace/catkin_ws/devel/lib 
-Requires: 
