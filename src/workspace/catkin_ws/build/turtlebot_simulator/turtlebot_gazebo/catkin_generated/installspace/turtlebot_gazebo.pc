@@ -1,8 +1,0 @@
-prefix=/mnt/Datos/Juanc/Documents/Udacity/worksace/catkin_ws/install
-
-Name: turtlebot_gazebo
-Description: Description of turtlebot_gazebo
-Version: 2.2.3
-Cflags: 
-Libs: -L/mnt/Datos/Juanc/Documents/Udacity/worksace/catkin_ws/install/lib 
-Requires: 
