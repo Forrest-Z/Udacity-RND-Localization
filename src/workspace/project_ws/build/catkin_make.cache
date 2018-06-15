@@ -1,2 +1,0 @@
-udacity_bot
--DCATKIN_DEVEL_PREFIX=/mnt/Datos/Juanc/Udacity/Localization/src/workspace/project_ws/devel -DCMAKE_INSTALL_PREFIX=/mnt/Datos/Juanc/Udacity/Localization/src/workspace/project_ws/install -G Unix Makefiles
